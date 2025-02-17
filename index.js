@@ -37,6 +37,11 @@ app.get("/companies",async(req , res) => {
     res.send(companies)
 })
 
+app.delete("/companies/:id",async(req , res) => {
+    const companies = await Company.findByIdAndDelete( req.params.id)
+    res.status(200).send({ message: "Company deleted successfully"})
+})
+
 app.get("/users",async(req , res) => {
     const users = await User.find().populate("companies")
     res.send(users)
